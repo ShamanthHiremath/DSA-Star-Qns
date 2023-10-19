@@ -41,7 +41,5 @@ int main(){
     int integersoln=floatsqrt(n);
     cout<<floatsqrt(n);
     cout<<morePrecision(n, 4, integersoln);
-
-
  return 0;
 }
