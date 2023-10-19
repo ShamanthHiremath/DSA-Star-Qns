@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+//Added
 // You calculate the sum of the array first
 // The min pos arrangement/disbn is to place/allote all the vlaues in the first such that all the task is done in 1 day/by 1st person
 // The max pos arrangement/disbn is to place/allote all the values to the highest of the array such that the task is done in the maximum of day/ maximum of persons
