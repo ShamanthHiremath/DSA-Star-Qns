@@ -28,4 +28,5 @@ vector<int> findArraySum(vector<int>&a, int n, vector<int>&b, int m) {
 		j--;}
 	}
 	reverse(ans.begin(), ans.end());
-	return ans
+	return ans;
+}
