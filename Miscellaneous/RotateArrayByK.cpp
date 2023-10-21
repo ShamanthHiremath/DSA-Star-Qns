@@ -11,4 +11,13 @@ public:
             i++;
         }
     }
+    //Cyclic Way of Shifting
+    void rotate1(vector<int>& nums, int k) {
+        vector<int> temp(nums.size());
+        for(int i=0;i<nums.size();i++){
+            temp[(i+k)%n]=temp[i];
+        }
+        }
+        nums=temp;
+    }
 };
