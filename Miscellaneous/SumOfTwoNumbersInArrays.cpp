@@ -1,16 +1,16 @@
 #include <bits/stdc++.h> 
 vector<int> findArraySum(vector<int>&a, int n, vector<int>&b, int m) {
-	vector<int> sum;
-	int part=0, carry=0;
+	vector<int> ans;
+	int sum=0, carry=0;
 	int i=n-1, j=m-1;
 	for(; i>=0&&j>=0; i--,j--){
-		part=a[i]+b[j]+carry;
-		if(part>=10){
-			sum.push_back((part)%10);
+		sum=a[i]+b[j]+carry;
+		if(sum>=10){
+			ans.push_back((sum)%10);
 			carry=1;
 		}
 		else{
-			sum.push_back(part);
+			ans.push_back(sum);
 			carry=0;
 		}
 	}
@@ -23,10 +23,9 @@ vector<int> findArraySum(vector<int>&a, int n, vector<int>&b, int m) {
 	}
 	else{
 		while(j>=0||carry!=0){
-		sum.push_back(b[j]+carry);
+		ans.push_back(b[j]+carry);
 		carry=0;
 		j--;}
 	}
-	reverse(sum.begin(), sum.end());
-	return sum;
-}
+	reverse(ans.begin(), ans.end());
+	return ans
