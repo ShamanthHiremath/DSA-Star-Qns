@@ -12,6 +12,7 @@ public:
         }
     }
     //Cyclic Way of Shifting
+    //Note: An array A rotated by x positions results in an array B of the same length such that A[i] == B[(i+x) % A.length], where % is the modulo operation.
     void rotate1(vector<int>& nums, int k) {
         vector<int> temp(nums.size());
         for(int i=0;i<nums.size();i++){
