@@ -31,6 +31,17 @@ void reverselist(LinkedListNode<int>* &head, LinkedListNode<int>* curr, LinkedLi
         curr->next=prev;
 }
 
+LinkedListNode<int>* reverse3(LinkedListNode<int>* &head){
+    //base case
+    if(head==NULL || head->next==NULL){
+        return head;
+    }
+    LinkedListNode<int> *smalllist= reverse3(head->next);
+    head->next->next=head;
+    head->next=NULL;
+    return smalllist;
+}
+
 LinkedListNode<int> *reverseLinkedList(LinkedListNode<int> *head) 
 {
     if(head==NULL || head->next==NULL){
