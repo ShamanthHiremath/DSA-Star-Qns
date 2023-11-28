@@ -18,6 +18,18 @@
     };
 
 *****************************************************************/
+//Recursions
+
+void reverselist(LinkedListNode<int>* &head, LinkedListNode<int>* curr, LinkedListNode<int>*prev){
+    //base case
+    if (curr == NULL) {
+      head = prev;
+      return;
+    }
+        LinkedListNode<int>* forward=curr->next;
+        reverselist(head, forward, curr);
+        curr->next=prev;
+}
 
 LinkedListNode<int> *reverseLinkedList(LinkedListNode<int> *head) 
 {
