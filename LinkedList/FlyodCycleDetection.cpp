@@ -6,7 +6,7 @@
 
    /* detect if there is a loop
     in the linked list*/
-    bool detectLoop()
+    bool detectLoop(Node* head)
     {
         Node *slowPointer = head,
              *fastPointer = head;
@@ -21,4 +21,19 @@
         }
  
         return 0;
+    }
+    //USING MAPS TO STORE VISITS OF EACH NODES
+    bool detectLoop(Node* head){
+        if(head==NULL)return false;
+        map<Node* , bool> visittracker;
+        Node* temp=head;
+        while(temp!=NULL){
+            if(visittracker[temp]==true){
+                return true;
+            }
+            visittracker[temp]=true;
+            temp=temp->next;
+        }
+        return false;
+
     }
