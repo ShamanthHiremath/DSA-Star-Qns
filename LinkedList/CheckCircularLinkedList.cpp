@@ -17,12 +17,15 @@ bool isCircular(Node* head){
     while(slow!=NULL && fast!=NULL){
         slow = slow->next;
         fast = fast->next;
-        if(fast!=NULL) fast = fast->next; 
+        if(fast!=NULL) fast = fast->next;
+        //for a LINKED LIST WITH CIRCULAR LOOPS WITHIN THEM
+        // At a certain point both slow and fast points meet but u have to check if the slow or fast is pointing to the head  or not 
         if(slow == fast){
             if(slow == head) return true;
             else return false;
         }
     }
+    //for NORMAL LINKED LIST
     return false;
 }
 
