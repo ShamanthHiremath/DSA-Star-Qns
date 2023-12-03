@@ -41,6 +41,20 @@ LinkedListNode<int>* reverse3(LinkedListNode<int>* &head){
     head->next=NULL;
     return smalllist;
 }
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* temp=NULL;
+        while(head!=NULL){
+            ListNode* forward=head->next;
+            head->next=temp;
+            temp=head;
+            head=forward;
+        }
+        return temp;
+    }
+};
+//the above code is same as below one but it efficiently uses forward and temp without the need for prev and curr and uses less memory beacausethe forward node dies after the while loop scopw
 
 LinkedListNode<int> *reverseLinkedList(LinkedListNode<int> *head) 
 {
