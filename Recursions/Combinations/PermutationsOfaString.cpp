@@ -10,6 +10,7 @@ private:
             solve(ans, nums, index+1);
             swap(nums[i], nums[index]);
         }
+        return ;
     }
 public:
     vector<vector<int>> permute(vector<int>& nums) {
