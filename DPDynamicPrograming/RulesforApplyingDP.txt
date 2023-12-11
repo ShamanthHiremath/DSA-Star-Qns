@@ -8,6 +8,8 @@ RULES FOR APPLYING DP
 1)Try to represnt the prob in INDEXES
 2)Device the Algorithm to find the possible way for that output
 3)Sum of all possible ways (if MIN or MAX is asked, take MIN or MAX and add)
+4)Memosize/store in a VECTOR or MAP (of size(n+1) initialised with -1) accordingly 
+5)Find the no of ways stored  in that index whenever required to eliminate time
 
 STRIVERS LINK FOR DP AND RECURSIONS
 https://youtu.be/mLfjzJsN8us?si=FvJZu8DEX0VZDpkA
