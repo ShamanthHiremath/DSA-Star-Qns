@@ -1,0 +1,17 @@
+RULES FOR APPLYING DP
+
+1)When multiple possible ways/ counting the number of ways possible to do a problem is asked
+2)Which is the MAX of all or MIN of all ways
+3)Try all possible cases RECURSIONS
+4)Perform all ways and sum it
+
+1)Try to represnt the prob in INDEXES
+2)Device the Algorithm to find the possible way for that output
+3)Sum of all possible ways (if MIN or MAX is asked, take MIN or MAX and add)
+
+STRIVERS LINK FOR DP AND RECURSIONS
+https://youtu.be/mLfjzJsN8us?si=FvJZu8DEX0VZDpkA
+
+EXAMPLES
+CLIMBING STAIRS
+HOUSE ROBBER
