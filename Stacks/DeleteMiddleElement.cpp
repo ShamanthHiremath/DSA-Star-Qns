@@ -2,8 +2,8 @@
 void deleteMiddle(stack<int>&inputStack, int N){
    if(N==0){
       inputStack.pop();
-      return;
       // cout<<"EMPTYSTACK";
+      return;
    } 
    int end=0;
    if((N+1)%2==0){
