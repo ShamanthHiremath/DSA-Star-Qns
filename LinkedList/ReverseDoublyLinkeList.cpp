@@ -19,20 +19,49 @@ LinkedListNode<int>* reverseLinkedList(LinkedListNode<int>* &head, LinkedListNod
     LinkedListNode<int>* temp = head;
     LinkedListNode<int>* curr = head->next;
 
-    while (curr != NULL) {
+    while (temp!= NULL) {
         temp->next = temp->prev;
         temp->prev = curr;
-        curr->next = temp;
-        curr->prev = curr->next;
-        temp = temp->prev;
-        curr = curr->prev;
+        if(temp->prev!=NULL){
+            temp=curr;
+        }
+        // curr->next = temp;
+        // temp = temp->prev;
+        // curr->prev = curr->next;
+        if(curr!=NULL){
+            curr = curr->next;
+        }
+        if(temp->prev==NULL){
+            break;
+        }
     }
-    temp = head;
-    head = tail;
-    tail = temp;
-    return head;
+    //temp = head;
+    //head = tail;
+    //tail = temp;
+    return temp;
 }
+Node* reverseDLL(Node* head) {
+    if (head == nullptr || head->next == nullptr) {
+        return head;
+    }
 
+    Node* prev = nullptr;
+    Node* current = head;
+
+    while (current != nullptr) {
+        // Swap prev and next pointers for the current node
+        Node* nextNode = current->next;
+        current->next = prev;
+        current->prev = nextNode;
+
+        // Move to the next nodes
+        prev = current;
+        current = nextNode;
+    }
+
+    // After the loop, prev will be pointing to the new head of the reversed list
+    return prev;
+}
 void printLinkedList(LinkedListNode<int>* &head) {
     LinkedListNode<int>* temp = head;
     int len = 0;
