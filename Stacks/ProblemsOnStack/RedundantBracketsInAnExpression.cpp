@@ -52,3 +52,11 @@ bool findRedundantBrackets(string &s)
     }
     return false;
 }
+/*
+5
+a+((b*c)) YES
+(c*b)+a*(a+b) NO
+(a*b)*((c+b)*(d+b)) NO
+((a*b)*(c+b))*((d)+b) YES
+(a+b*((a/c-d))) YES
+*/
