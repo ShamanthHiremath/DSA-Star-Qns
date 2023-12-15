@@ -36,6 +36,7 @@ class Solution {
                 }
             }
         }
+        //add the contents of the stack to a vector and reverse
         vector<int>ans;
         while(!s.empty()){
             ans.push_back(s.top());
