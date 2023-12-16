@@ -2,7 +2,7 @@
 /*
 Sparse matrix is a matrix consisting of more no of elements as 0
 ARRAY is
-{ {1, 0, 2},
+{ {1, 0, 3},
    {0, 2, 0},
    {0, 0, 4} }; 
 Original Matrix:
