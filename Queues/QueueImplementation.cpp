@@ -5,19 +5,19 @@ using namespace std;
 
 class Queue {
     int size;
-    int start;
-    int end;
+    int front;
+    int rear;
     int *arr;
 
 public:
     Queue() {
-        start=0;
+        front=0;
         size=10000001;
         arr= new int[size];
-        end=0;
+        rear=0;
     }
     bool isEmpty() {
-        if(start==end){
+        if(front==rear){
             return 1;
         }
         else{
@@ -26,40 +26,40 @@ public:
     }
 
     void enqueue(int data) {
-        if(end==size){
-            cout<<"QUEUE startULL";
+        if(rear==size){
+            cout<<"QUEUE frontULL";
             return;
         }
         else{
-            arr[end++]=data;
+            arr[rear++]=data;
             return;
         }
     }
 
     int dequeue() {
-        if(start==end){
+        if(front==rear){
             return -1;
         }
         else{
-            int ans=arr[start];
-            arr[start]=-1;
-            start++;
-            if(start==end){
-                start=0;
-                end=0;
+            int ans=arr[front];
+            arr[front]=-1;
+            front++;
+            if(front==rear){
+                front=0;
+                rear=0;
             }
             return ans;
         }
     }
 
     int front() {
-        if (start == end) {
+        if (front == rear) {
             return -1;
         }
-        return arr[start];
+        return arr[front];
     }
     int rear(){
-        return arr[end];
+        return arr[rear];
     }
 };
 
