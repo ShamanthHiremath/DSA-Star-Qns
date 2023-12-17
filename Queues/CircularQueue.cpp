@@ -67,4 +67,13 @@ class CircularQueue{
         return pop;
         // Write your code here.
     }
+    bool isEmpty(){
+        //empty queue
+        if(front==-1 && rear==-1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 };
