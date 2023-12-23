@@ -12,9 +12,12 @@ void towersOfHanoi(int numDisks, char source, char auxiliary, char destination) 
         moveDisk(1, source, destination);
         return;
     }
-
+    // the ultimate goal is to move all the rings to destination using some or the other stack rod (auxillary)
+    //u move the rings from source to destination using the auxillary
     towersOfHanoi(numDisks - 1, source, destination, auxiliary);
+    //for every move u make from one rod to the other, print it
     moveDisk(numDisks, source, destination);
+    //u move the move from auxillary to destination using source
     towersOfHanoi(numDisks - 1, auxiliary, source, destination);
 }
 
