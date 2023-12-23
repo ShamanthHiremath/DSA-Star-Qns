@@ -88,6 +88,7 @@ struct SparseMatrix fastTranspose(struct SparseMatrix matrix) {
     int *startPos = (int *)malloc(matrix.cols * sizeof(int));
     startPos[0] = 0;
     for (int i = 1; i < matrix.cols; i++) {
+        //basically stores the satrting position of the row of transposed matrix to be added in the fast transpose matrix
         startPos[i] = startPos[i - 1] + numInCol[i - 1];
     }
 
