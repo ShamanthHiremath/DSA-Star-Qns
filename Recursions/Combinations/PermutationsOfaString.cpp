@@ -27,7 +27,7 @@ public:
 void perm(char *list, int i,int n)
 {
 int j,temp;
-if(i==n)       {
+if(i==n)        {
               for(j=0;j<=n;j++)
                          printf("%c",list[j]);
    printf("  ");
