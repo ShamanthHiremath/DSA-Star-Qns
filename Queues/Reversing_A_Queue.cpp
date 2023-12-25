@@ -1,6 +1,10 @@
 class Solution
 {
     public:
+    // Base case is stop when the queue is empty that is when u reach the last element to enqueue 
+    // Dequeue the front element of the queue.
+    // Recursively reverse the remaining queue.
+    // Enqueue the front element that was dequeued in step 1.
     void solve(queue<int>& q){
         if(q.empty()){
             return;
