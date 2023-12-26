@@ -47,3 +47,25 @@ class Solution{
        }
     }
 };
+class Solution {
+public:
+    int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
+        int startpos=0;
+        int fuel=0;
+        int deficiet=0;
+        for(int i=0; i<gas.size(); i++){
+            fuel+=gas[i]-cost[i];
+            if(fuel<0){
+                deficiet+=fuel;
+                fuel=0;
+                startpos=i+1;
+            }
+        }
+        if(fuel+deficiet>=0){
+            return startpos;
+        }
+        else{
+            return -1;
+        }
+    }
+};
