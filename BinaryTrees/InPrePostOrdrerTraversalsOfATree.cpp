@@ -37,50 +37,9 @@ void postOrderTraversal(TreeNode* root){
     postOrderTraversal(root->right);
     cout<<root->data<< " ";
 } 
-
-void LevelOrderTraversal(TreeNode* root){
-    if(root==NULL){
-        return;
-    }
-
-    int height=getHeight(root);
-    for(int i=1; i<=height; ++i){
-        //print given nodes at current level
-        printGivenLevel(root, i);
-        cout<<endl;
-    }
-}
-
-void QLevelOrderTraversal(TreeNode* root){
-    queue<TreeNode*> q;
-    q.push(root);
-    q.push(NULL);
-    while(!q.empty()){
-        TreeNode* curr=q.front();
-        q.pop();
-        if(curr==NULL){
-            cout<<endl;
-            if(!q.empty()){
-                q.push(NULL);
-            }
-        }
-        else{
-            cout<<curr->data<<" ";
-            if(curr->left){
-                q.push(curr->left);
-            }
-            if(curr->right){
-                q.push(curr->right);
-            }
-        }
-    }
-}
 //in main function
 /*
     cout<<"\nPRINTING BINARY TREE IN ORDERS"<<endl;
-    QLevelOrderTraversal(root);
-    cout<<"Height of the given tree: "<<getHeight(root)<<endl;
-    LevelOrderTraversal(root);
     cout<<"The InOrder Traversal is: ";
     inOrderTraversal(root);
     cout<<endl;
