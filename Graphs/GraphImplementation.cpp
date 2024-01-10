@@ -4,6 +4,7 @@
 using namespace std;
 class Graph{
     public:
+    //(Key is INT VALUE or Node, Values are the Connected Nodes)
     unordered_map<int, list<int> > adj;
     void addEdge(int u, int v, bool direction){
         adj[u].push_back(v);
@@ -24,12 +25,12 @@ class Graph{
 };
 
 void CreateGraph(Graph &g, int n, int m){
-    cout<<"/nENTER THE GRAPH AS A PAIR OF NODE ->NODE: "<<endl; 
+    cout<<"\nENTER THE GRAPH AS A PAIR OF NODE ->NODE: "<<endl; 
     for(int i=0; i<m; i++){
         int u, v;
         cout<<"Pair "<<i+1<<": "<<endl;
         cin>>u;
-        cout<<" -> ";
+        cout<<"  -> ";
         cin>>v;
         bool dirn;
         cout<<endl<<"DIRECTED?? (1/0) :  ";
@@ -45,7 +46,7 @@ int main(){
     cout<<"ENTER  THE NUMBER OF EDGES: ";
     cin>>m;
     Graph g;
-    cout<<"/nENTER THE GRAPH AS A PAIR OF NODE ->NODE: "<<endl; 
+    // cout<<"\nENTER THE GRAPH AS A PAIR OF NODE ->NODE: "<<endl; 
     CreateGraph(g, n, m);
     //         (OR)
     /*
