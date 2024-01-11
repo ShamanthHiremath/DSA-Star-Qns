@@ -10,7 +10,7 @@ bool hasCycleDFS(unordered_map<int, list<int>> &adj, unordered_map<int, bool> &v
       }
     }
     //MAIN IMPORTANT LOGIC
-    else if( visited[i]==1 && dfsvisited[neighbor]==1){
+    else if( visited[neighbor] && dfsvisited[neighbor]==1){
       return true;
     }
   }
