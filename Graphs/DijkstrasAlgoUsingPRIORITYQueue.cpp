@@ -3,6 +3,15 @@
 using namespace std;
 
 // In this version, I've replaced the set with a priority_queue, which allows for efficient retrieval of the minimum distance node.
+/*
+In the context of the priority queue declaration priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;, let's break down each part:
+
+pair<int, int>: This specifies the type of elements that the priority queue will store. Each element is a pair of integers.
+
+vector<pair<int, int>>: This specifies the underlying container used by the priority queue. In this case, it's a vector holding pairs of integers. The elements in the vector will be managed in a way that maintains the priority queue property.
+
+greater<pair<int, int>>: This is a comparison function that determines the order of elements in the priority queue. The greater function ensures that the smallest element comes to the top of the priority queue. For pairs, it compares based on the first element, and if there is a tie, it uses the second element for comparison.
+*/
 //The comparison function greater<pair<int, int>> ensures that the priority queue always gives the smallest distance node at the top.//
 
 vector<int> dijkstra(vector<vector<int>> &vec, int vertices, int edges, int source) {
