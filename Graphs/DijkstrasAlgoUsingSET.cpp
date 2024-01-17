@@ -13,7 +13,6 @@ Input:
 1 2 9
 1 3 2
 2 3 6
-
 Output:
 The number of vertices is 4, and the number of edges is 5.
 
