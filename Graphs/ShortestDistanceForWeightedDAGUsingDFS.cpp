@@ -31,7 +31,7 @@ class Solution {
         return ;
     }
      
-    vector<int> shortestPath(int N,int M, vector<vector<int>>& edges){
+    vector<int> shortestPath(int src, int N,int M, vector<vector<int>>& edges){
         
         //Create adjacenecy list with Vertices and its weights/distances
         unordered_map<int, list<pair<int, int> > > adj;
@@ -50,7 +50,7 @@ class Solution {
         }
         
         //Calculating the distance array
-        int src=0;
+        //int src=0;
         vector<int> dist(N, INT_MAX);
         calShortestDist(dist, s, adj, src);
         
