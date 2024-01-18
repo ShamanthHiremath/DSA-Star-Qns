@@ -72,7 +72,7 @@ vector<pair<pair<int, int>, int>> calculatePrimsMST(int n, int m, vector<pair<pa
     //COMPLETED THE FORMING PARENT PART
 
     vector<pair<pair<int, int>, int>> ansMST;
-    //we start from src+1 because the parent of src is 0 and if pushed  it becomes a vertex
+    //we start from src+1 because the parent of src is itself and if pushed  it becomes a vertex
     for(int i=src+1; i<=n; i++){
         // because the parent array consists of parent of ith vertex in ith position
         ansMST.push_back({{parent[i], i}, key[i]});
