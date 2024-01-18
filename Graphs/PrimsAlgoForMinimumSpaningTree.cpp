@@ -46,7 +46,7 @@ vector<pair<pair<int, int>, int>> calculatePrimsMST(int n, int m, vector<pair<pa
     //parent[src] is already -1
     for(int i=1; i<=n; i++){
 
-        //Take out the minimum most element index
+        //Take out the minimum most element index fromthe KEY array
         int mini=INT_MAX;
         int u;
         for(int j=1; j<=n; j++){
