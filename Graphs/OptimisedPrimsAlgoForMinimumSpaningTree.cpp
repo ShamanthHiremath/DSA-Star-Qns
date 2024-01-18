@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -14,13 +14,14 @@ vector<pair<pair<int, int>, int>> calculatePrimsMST(int n, int m, vector<pair<pa
         adj[v].push_back({u, w});
     }
 
-    //Stores minmost element as top/front
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
     vector<bool> mst(n + 1, false);
     vector<int> parent(n + 1, -1);
+    vector<int> pq_key(n + 1, INT_MAX); // Added to store key values in the priority queue
 
     int src = 1;
     pq.push({0, src});
+    pq_key[src] = 0; // Initialize the key of the source vertex
 
     while (!pq.empty())
     {
@@ -41,6 +42,7 @@ vector<pair<pair<int, int>, int>> calculatePrimsMST(int n, int m, vector<pair<pa
             {
                 parent[v] = u;
                 pq.push({w, v});
+                pq_key[v] = w; // Update the key value in the priority queue
             }
         }
     }
