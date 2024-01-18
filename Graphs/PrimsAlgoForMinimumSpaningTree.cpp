@@ -36,7 +36,8 @@ vector<pair<pair<int, int>, int>> calculatePrimsMST(int n, int m, vector<pair<pa
     }
 
     //We need 3 DS's with 0 based indexing
-    vector<int>key(n+1, INT_MAX);// to store the
+    
+    vector<int>key(n+1, INT_MAX);// to store the Weights
     vector<bool>mst(n+1, false); // to store visited/included nodes  of the MST
     vector<int>parent(n+1, -1);
 
@@ -50,6 +51,7 @@ vector<pair<pair<int, int>, int>> calculatePrimsMST(int n, int m, vector<pair<pa
         int mini=INT_MAX;
         int u;
         for(int j=1; j<=n; j++){
+            //only false nodes are considered
             if(mst[j]==false && key[j]<mini){
                 mini=key[j];
                 u=j;
