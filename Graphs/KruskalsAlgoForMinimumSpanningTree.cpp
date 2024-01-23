@@ -82,3 +82,18 @@ int minimumSpanningTree(vector<vector<int>>& edges, int n)
   return minimumWeight;
 
 }
+/*
+Sort Edges: Sort all the edges in the graph in non-decreasing order of their weights.
+
+Initialize Disjoint Sets: Assign each vertex to its own disjoint set. This can be done using an array (often called parent or parentRoot), where initially each element is its own parent.
+
+Iterate Through Edges: Starting from the smallest weighted edge, iterate through each edge.
+
+Check for Cycle: For each edge, check if including that edge in the minimum spanning tree would create a cycle. This can be done by checking if the two vertices of the edge belong to the same disjoint set. If they do, including the edge would create a cycle, so skip to the next edge.
+
+Merge Disjoint Sets: If the vertices of the edge belong to different disjoint sets, include the edge in the minimum spanning tree and merge the disjoint sets of the two vertices. This is typically done using the union operation in a disjoint-set data structure.
+
+Repeat: Repeat steps 3-5 until there are n-1 edges in the minimum spanning tree, where n is the number of vertices in the graph.
+
+The algorithm ensures that the included edges form a tree without any cycles, and it selects edges with the smallest weights first. The final result is the minimum spanning tree of the given graph.
+*/
