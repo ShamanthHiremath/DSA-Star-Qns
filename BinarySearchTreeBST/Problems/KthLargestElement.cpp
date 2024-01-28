@@ -1,19 +1,28 @@
-void solveUsingInorderTrav(BinaryTreeNode<int>* root, int &i, int k, int &ans){
+class Solution
+{
+    public:
+    void solveUsingReverseInorderTrav(Node* root, int &i, int k, int &ans){
     if(root==NULL){
         return ;
     }
-    solveUsingInorderTrav(root->left, i, k, ans);
+    //Traverse right node first R
+    solveUsingReverseInorderTrav(root->right, i, k, ans);
     i++;
+    //Node N
     if(i==k){
         ans=root->data;
         return ;
     }
-    solveUsingInorderTrav(root->right, i, k, ans);
+    //Traverse left node L
+    solveUsingReverseInorderTrav(root->left, i, k, ans);
 }
 
-int kthSmallest(BinaryTreeNode<int>* root, int k) {
-    int ans = -1;
+    int kthLargest(Node *root, int K)
+    {
+        int ans = -1;
     int i = 0;
-    solveUsingInorderTrav(root, i, k, ans);
+    ///DO REVERSE INORDER
+    solveUsingReverseInorderTrav(root, i, K, ans);
     return ans;
-}
+    }
+};
