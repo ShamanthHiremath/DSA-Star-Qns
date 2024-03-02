@@ -47,6 +47,8 @@ void merge(int* arr, int s, int e){
         j++;
         k++;
     }
+    delete[] left;
+    delete[] right;
 
 }
 
