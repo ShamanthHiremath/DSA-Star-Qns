@@ -1,3 +1,9 @@
+/*
+Go left to right in the first level, --->>
+right to left in second level        <<---
+and repeat
+*/
+
 class Solution{
     public:
     //Function to store the zig zag order traversal of tree in a list.
