@@ -1,3 +1,11 @@
+/*
+go from the root...
+to all the left tree and print the leftmost side nodes
+untill the leaf node
+then traverse all leaf nodes
+then traverse the rightmost side nodes from bottom to the root and stop
+*/
+
 class Solution {
 public:
     void leftB(vector<int>& ans, Node* root) {
