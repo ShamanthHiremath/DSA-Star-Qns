@@ -66,7 +66,7 @@ class maxHeap{
             if (largest != index){
                 swap(heap[index], heap[largest]);
                 // Recursively heapify the affected subtree
-                heapify(largest);
+                heapifyRec(largest);
             }
 
         }
