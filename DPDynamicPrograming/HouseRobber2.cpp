@@ -9,6 +9,8 @@ Output: 4
 Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3).
 Total amount you can rob = 1 + 3 = 4.
 */
+#include <bits/stdc++.h> 
+
 class Solution {
 public:
     int solve(vector<int>& nums, vector<int>&dp, int i, int end){
@@ -33,7 +35,6 @@ public:
     }
 };
 
-#include <bits/stdc++.h> 
 
 long long int dpsolve(int i, int end, vector<long long int>&dp, vector<int>& valueInHouse){
     if(i >= end){
@@ -63,4 +64,48 @@ long long int houseRobber(vector<int>& valueInHouse)
     vector<long long int>dp2(valueInHouse.size(), -1);
 
     return max (dpsolve(0, valueInHouse.size()-1, dp1, valueInHouse), dpsolve(1, valueInHouse.size(), dp2, valueInHouse));
+}
+
+long long int solve(vector<int>& arr){
+    int n = arr.size();
+
+    long long int prev1 = arr[0];
+    long long int prev2 = 0;
+
+    for(int i=1; i<n; i++){
+        long long int incl = prev2 + arr[i];
+        long long int excl = prev1;
+
+        long long int ans = max(incl,excl);
+
+        prev2 = prev1;
+        prev1 = ans;
+    }
+    
+    return prev1;
+}
+
+long long int houseRobber(vector<int>& valueInHouse)
+{
+    // int start = 0;
+    if(valueInHouse.size()==0){
+        return -1;
+    }
+    if(valueInHouse.size()==1){
+        return valueInHouse[0];
+    }
+
+    vector<int>arr1;
+    vector<int>arr2;
+
+    for(int i=0; i<valueInHouse.size(); i++){
+        if(i!=0){
+            arr2.push_back(valueInHouse[i]);
+        }
+        if (i != valueInHouse.size() - 1) {
+            arr1.push_back(valueInHouse[i]);
+        }
+    }
+
+    return max(solve(arr1), solve(arr2));
 }
