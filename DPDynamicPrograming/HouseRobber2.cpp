@@ -30,5 +30,37 @@ public:
         vector<int>dp1(nums.size(),-1);
         vector<int>dp2(nums.size(),-1);
         return max(solve(nums,dp1,nums.size()-2,0),solve(nums,dp2,nums.size()-1,1));
-    }
+    }
 };
+
+#include <bits/stdc++.h> 
+
+long long int dpsolve(int i, int end, vector<long long int>&dp, vector<int>& valueInHouse){
+    if(i >= end){
+        return 0;
+    }
+    if(dp[i]!=-1){
+        return dp[i];
+    }
+
+    long long int chooseHouse = valueInHouse[i] + dpsolve(i+2, end, dp, valueInHouse);
+    long long int notchooseHouse = dpsolve(i+1, end, dp, valueInHouse);
+
+    return dp[i] = max(chooseHouse, notchooseHouse);
+
+}
+
+long long int houseRobber(vector<int>& valueInHouse)
+{
+    // int start = 0;
+    if(valueInHouse.size()==0){
+        return -1;
+    }
+    if(valueInHouse.size()==1){
+        return valueInHouse[0];
+    }
+    vector<long long int>dp1(valueInHouse.size(), -1);
+    vector<long long int>dp2(valueInHouse.size(), -1);
+
+    return max (dpsolve(0, valueInHouse.size()-1, dp1, valueInHouse), dpsolve(1, valueInHouse.size(), dp2, valueInHouse));
+}
