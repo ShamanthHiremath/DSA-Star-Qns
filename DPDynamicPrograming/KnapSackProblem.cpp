@@ -1,7 +1,6 @@
 /*
 A thief is robbing a store and can carry a maximal weight of W into his knapsack. There are N items and the ith item weighs wi and is of value vi. Considering the constraints of the maximum weight that a knapsack can carry, you have to find and return the maximum value that a thief can generate by stealing items.
 */
-
 #include <bits/stdc++.h>
 
 int solveDP(vector<int>&weight, vector<int>&value, int index, int capacityInKS, vector<vector<int>>&dp){
@@ -55,9 +54,38 @@ int solveDPTab(vector<int>&weight, vector<int>&value, int n, int capacityInKS){
 	
 }
 
+int solveDPTabSpaceOptimised(vector<int>&weight, vector<int>&value, int n, int capacityInKS){
+	//Step 1: Create dp array
+	vector<int>prevDP(capacityInKS+1, 0);
+	vector<int>currDP(capacityInKS+1, 0);
+
+	//Step 2: Analyse Base Case
+	for(int w=weight[0] ; w<=capacityInKS; w++){
+		if(weight[0] <= capacityInKS){
+			prevDP[w] = value[0];
+		}
+	}
+
+	for(int index=1; index<n; index++){
+		for(int w=0; w<=capacityInKS; w++){
+				int incl = 0;
+				if(weight[index] <= w){
+					incl = value[index] + prevDP[w-weight[index]];
+				}
+				int excl = 0 + prevDP[w];
+
+				currDP[w] = max(incl, excl);			
+		}
+		prevDP = currDP;
+	}
+
+	return prevDP[capacityInKS];
+	
+}
+
 int knapsack(vector<int> weight, vector<int> value, int n, int maxWeight) 
 {
 	vector<vector<int>>dp(n, vector<int>(maxWeight+1, -1));
-	return solveDPTab(weight, value, n, maxWeight);
+	return solveDPTabSpaceOptimised(weight, value, n, maxWeight);
 	// return solveDP(weight, value, n, maxWeight, dp);
 }
