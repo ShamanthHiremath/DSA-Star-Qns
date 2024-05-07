@@ -12,6 +12,23 @@ RULES FOR APPLYING DP
 5)Find the no of ways stored  in that index whenever required to eliminate time
 6)Used in cases where there are overlapping sub problems
 
+DP: MEMOIZATION (Top-Down Approach)
+
+1. Form recursive relation/function
+2. Define a DP vector (initialised with -1/optimal value) with the size of the quantity (that varies) to be found out
+3. Pass it by reference to the function and below base case, for every dp[quantity] != -1 return dp[quantity];
+4. For every last return call store the answer as return dp[quantity] = ans;
+
+DP: TABULATION (Bottom-Up Approach)
+
+1. Refer DPMemo
+2. Initialise DP Vector with suuitable value, INSIDE THE FUNCTION
+3. Infer base case and store that value in the corresponding DP[]
+4. Run necessary for-loop (In reverse order of DPMemo/ Bottom Approach) and insert the DP logic
+5. Replace recursive calls with DP[] of that very quantity in DP Memo RECURSION
+
+REFER Maximum Length of a Square that can be formed in a 2-D array
+
 STRIVERS LINK FOR DP AND RECURSIONS
 https://youtu.be/mLfjzJsN8us?si=FvJZu8DEX0VZDpkA
 IMPLEMENT DP
