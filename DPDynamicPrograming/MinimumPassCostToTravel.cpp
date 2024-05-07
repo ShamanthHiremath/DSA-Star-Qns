@@ -68,3 +68,61 @@ int minimumCoins(int n, vector<int> days, vector<int> cost)
 {
     return solve(n, days, cost);
 }
+
+
+// DP AND REC APPROACH
+
+int solve(int n, vector<int>&days, vector<int>&cost, int index, vector<int>&dp){
+    if(index >= n){
+        return 0;
+    }
+
+    if(dp[index] != -1){
+        return dp[index];
+    }
+
+    int daypass = cost[0] + solve(n, days, cost, index+1, dp);
+
+    //to track expiry day
+    int i; 
+    //traverse untill the point where the weekly pass expires
+    for(i= index; i<n && days[i] < days[index] +7; i++);
+    int weeklypass = cost[1] + solve(n, days, cost, i, dp);
+
+    //traverse untill the point where the monthly pass expires
+    for(i= index; i<n && days[i] < days[index] + 30; i++);
+    int monthlypass = cost[2] + solve(n, days, cost, i, dp);
+
+    return dp[index] = min(daypass, min(monthlypass, weeklypass));
+}
+
+int solveTab(int n, vector<int>&days, vector<int>&cost){
+    if(n==0){
+        return 0;
+    }
+    vector<int>dp(n+1, INT_MAX);
+    dp[n] = 0;
+
+    for(int index = n-1; index>=0; index--){
+        int daypass = cost[0] + dp[index+1];
+
+        //to track expiry day
+        int i; 
+        //traverse untill the point where the weekly pass expires
+        for(i= index; i<n && days[i] < days[index] +7; i++);
+        int weeklypass = cost[1] +  dp[i];
+
+        //traverse untill the point where the monthly pass expires
+        for(i= index; i<n && days[i] < days[index] + 30; i++);
+        int monthlypass = cost[2] +  dp[i];
+
+        dp[index] = min(daypass, min(monthlypass, weeklypass));
+    }
+    return dp[0];
+}
+
+int minimumCoins(int n, vector<int> days, vector<int> cost)
+{
+    vector<int>dp(n+1, -1);
+    return solveTab(n, days, cost);
+}
