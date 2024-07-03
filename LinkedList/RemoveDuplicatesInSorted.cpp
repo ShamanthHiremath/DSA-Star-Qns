@@ -42,3 +42,35 @@ Node * removeDuplicates(Node *head)
     }
     return head;
 }
+
+class Solution {
+  public:
+    Node* removeAllDuplicates(struct Node* head) {
+        // code here
+        if(head == NULL || head->next==NULL){
+            return head;
+        }
+        
+        Node dummy(0);
+        dummy.next = head;
+        Node* prev = &dummy;
+        Node* curr = head;
+
+        while (curr != NULL && curr->next != NULL) {
+            if (curr->data != curr->next->data) {
+                prev = curr;
+                curr = curr->next;
+            } else {
+                int dup = curr->data;
+                while (curr != NULL && curr->data == dup) {
+                    Node* temp = curr;
+                    curr = curr->next;
+                    delete temp;
+                }
+                prev->next = curr;
+            }
+        }
+
+        return dummy.next;
+    }
+};
