@@ -1,5 +1,76 @@
 //#include<bits/stdc++.h>
 
+class Solution {
+public:
+    void merge(vector<int>& arr, int s, int e){
+        int mid=s+(e-s)/2;
+        //find the lengths of the left and the right array
+        int length1=mid-s+1;
+        int length2= e-mid;
+
+        //create those two arrays
+        vector<int>left(length1);
+        vector<int>right(length2);
+
+        //copy the elements from main array to these array
+        int mainarrayindex=s;
+        for(int i=0; i<length1; i++){
+            left[i]=arr[mainarrayindex++];
+        }
+        mainarrayindex=mid+1;
+        for(int i=0; i<length2; i++){
+            right[i]=arr[mainarrayindex++];
+        }
+
+        //mergesort these two arrays
+        int i=0, j=0, k=s;
+        while(i<length1 && j<length2){
+            if(left[i]<=right[j]){
+                arr[k]=left[i];
+                i++;
+                k++;
+            }
+            else{
+                arr[k]=right[j];
+                j++;
+                k++;
+            }
+        }
+        while(i<length1){
+            arr[k]=left[i];
+            i++;
+            k++;
+        }
+        while(j<length2){
+            arr[k]=right[j];
+            j++;
+            k++;
+        }
+    }
+
+    void mergeSort(vector<int>&arr, int s, int e){
+        //Base Case, when the elements form single units
+        if(s>=e){
+            return;
+        }
+        int mid=s+(e-s)/2;
+        //divide the given array into two arrays untill theyform single units and merge them
+
+        //left array
+        mergeSort(arr, s, mid);
+        //right array
+        mergeSort(arr, mid+1, e);
+        //merge the left and  the right array
+        merge(arr, s, e);
+    }
+
+    vector<int> sortArray(vector<int>& nums) {
+        mergeSort(nums, 0, nums.size()-1);
+
+        return nums;
+    }
+};
+
 #include<iostream>
 using namespace std;
 
