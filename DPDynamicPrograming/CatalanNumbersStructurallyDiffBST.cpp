@@ -28,7 +28,7 @@ public:
             return dp[n];
         }
         int sum = 0;
-        for(int i=0; i<n; i++){
+        for(int i=1; i<=n; i++){
             // Note for a binary search tree with N nodes it is fosure, if the root node is ith Node, the i-1 nodes will be on the left and n-i nodes will be on the right
             // Also that if there are X structurally diff trees on left and Y on right of a root node
             // Then there will be a total of X*Y diff structures for the tree with the root  
