@@ -32,6 +32,8 @@ public:
             // Note for a binary search tree with N nodes it is fosure, if the root node is ith Node, the i-1 nodes will be on the left and n-i nodes will be on the right
             // Also that if there are X structurally diff trees on left and Y on right of a root node
             // Then there will be a total of X*Y diff structures for the tree with the root  
+            // Catalan Numbers folllows same code
+            // For a tree with n nodes, the number of structurally diff trees = C(n) = sum(C(i-1)*C(n-i)) for i=1 to n
             sum += ( solveDP(i-1, dp) * solveDP(n - i, dp) );
         }
 
