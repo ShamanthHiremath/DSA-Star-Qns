@@ -3,6 +3,10 @@
 
 https://leetcode.com/problems/maximum-height-by-stacking-cuboids/
 
+******************************************************************************************************
+SORT THE CUBOIDS ON THE BASIS OF WIDTH/LENGTH AND CHECK USING DP IF THE CUBOID CAN BE PLACED ON TOP OF ANOTHER CUBOID
+******************************************************************************************************
+
 Given n cuboids where the dimensions of the ith cuboid is cuboids[i] = [widthi, lengthi, heighti] (0-indexed). Choose a subset of cuboids and place them on each other.
 
 You can place cuboid i on cuboid j if widthi <= widthj and lengthi <= lengthj and heighti <= heightj. You can rearrange any cuboid's dimensions by rotating it to put it on another cuboid.
@@ -47,23 +51,23 @@ private:
 public:
     int solve(int n, vector<vector<int>>& cuboids){
         vector<int>currow(n+1, 0);
-        vector<int>nextrow(n+1, 0);
+        vector<int>prevrow(n+1, 0);
 
         for(int curr=n-1; curr>=0; curr--){
             for(int prev=curr-1; prev>=-1; prev--){
                 int include = 0;
                 // include the height of  the cuboid if it fits
                 if(prev == -1 || check(cuboids[curr], cuboids[prev])){
-                    include = cuboids[curr][2] + nextrow[curr + 1];
+                    include = cuboids[curr][2] + prevrow[curr + 1];
                 }
-                int exclude = 0 + nextrow[prev + 1];
+                int exclude = 0 + prevrow[prev + 1];
 
                 currow[prev + 1] =  max(include, exclude);
             }
-            nextrow = currow;
+            prevrow = currow;
         }
 
-        return nextrow[0];
+        return prevrow[0];
     }
 
     int maxHeight(vector<vector<int>>& cuboids) {
