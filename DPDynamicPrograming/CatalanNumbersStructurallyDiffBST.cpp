@@ -29,10 +29,10 @@ public:
         }
         int sum = 0;
         for(int i=0; i<n; i++){
-            // Note for a binary search tree with N nodes it is fosure, if the root node is ith Node, the i-1 nodes will be on the left and n-i-1 nodes will be on the right
+            // Note for a binary search tree with N nodes it is fosure, if the root node is ith Node, the i-1 nodes will be on the left and n-i nodes will be on the right
             // Also that if there are X structurally diff trees on left and Y on right of a root node
             // Then there will be a total of X*Y diff structures for the tree with the root  
-            sum += ( solveDP(i, dp) * solveDP(n - 1 - i, dp) );
+            sum += ( solveDP(i-1, dp) * solveDP(n - i, dp) );
         }
 
         return dp[n] = sum;
