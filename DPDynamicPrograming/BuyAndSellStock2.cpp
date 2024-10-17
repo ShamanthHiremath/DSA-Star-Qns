@@ -52,3 +52,43 @@ public:
         return solveDP(0, true, prices,dp);
     }
 };
+
+/*
+714. Best Time to Buy and Sell Stock with Transaction Fee
+
+https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/
+
+You are given an array prices where prices[i] is the price of a given stock on the ith day, and an integer fee representing a transaction fee.
+
+Find the maximum profit you can achieve. You may complete as many transactions as you like, but you need to pay the transaction fee for each transaction.
+*/
+
+
+class Solution {
+public:
+    int solveDP(int index, bool buy, int fee,vector<int>& prices, vector<vector<int>>&dp){
+        if(index == prices.size()){
+            return 0;
+        }
+        if(dp[index][buy] != -1){
+            return dp[index][buy];
+        }
+        int profit = 0;
+        if(buy){
+            int incl = -prices[index] - fee + solveDP(index+1, false, fee, prices, dp);
+            int excl = 0 + solveDP(index+1, true, fee, prices, dp);
+            profit = max(profit, max(incl, excl));
+        }
+        else{
+            int incl = prices[index] + solveDP(index+1, true, fee, prices, dp);
+            int excl = 0 + solveDP(index+1, false, fee, prices, dp);
+            profit = max(profit, max(incl, excl));
+        }
+
+        return dp[index][buy] = profit;
+    }
+    int maxProfit(vector<int>& prices, int fee) {
+        vector<vector<int>>dp(prices.size()+1, vector<int>(2, -1));
+        return solveDP(0, true, fee, prices,dp);
+    }
+};
