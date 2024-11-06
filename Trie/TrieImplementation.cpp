@@ -96,6 +96,25 @@ public:
         return searchUtil(root, word);
     }
 
+    bool prefixTest(TrieNode* root, string word){
+        if(!word.length()){
+            return true;
+        }
+        int index = word[0] - 'a';
+        TrieNode* child;
+        if(root->children[index]){
+            child = root->children[index];
+            return prefixTest(child, word.substr(1));
+        }
+        else{
+            return false;
+        }
+    }
+    
+    bool startsWith(string prefix) {
+        return prefixTest(root, prefix);
+    }
+
     void deleteUtil(TrieNode *root, string word)
     {
         if (!word.length())
