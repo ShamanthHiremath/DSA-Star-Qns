@@ -1,4 +1,4 @@
-void heapifyRec(int index)
+void heapify(int index)
 {
     int largest = index;
     int left = 2 * index + 1;

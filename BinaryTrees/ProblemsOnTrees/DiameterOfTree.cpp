@@ -2,6 +2,27 @@
 (isnt a neccesity such that the distance path should traverse through the root node )
 */
 
+
+class Solution {
+public:
+    int solve(TreeNode* root, int& maxi){
+        if(root == NULL){
+            return 0;
+        }
+        int left = solve(root->left, maxi);
+        int right = solve(root->right, maxi);
+        maxi = max(maxi, left+right);
+        return 1+ max(left, right);
+    }
+
+    int diameterOfBinaryTree(TreeNode* root) {
+        int maxi = 0;
+        solve(root, maxi);
+        return maxi;
+    }
+};
+
+
 //Faster code
 //TIME COMPLEXITY O(n)
 class Solution {
