@@ -2,7 +2,7 @@
 (isnt a neccesity such that the distance path should traverse through the root node )
 */
 
-
+//  O(n) Time Complexity Solution
 class Solution {
 public:
     int solve(TreeNode* root, int& maxi){

@@ -1,5 +1,14 @@
 #include<bits/stdc++.h>
 
+/*
+No of undirected graphs (not necessarily connected) that can be constructed out of a given n number of vertices.
+
+pow(2, n*(n-1)/2);
+
+2 ^ 𝑛(𝑛−1) / 2
+*/
+
+
 // #include<iostream>
 using namespace std;
 class Graph{
