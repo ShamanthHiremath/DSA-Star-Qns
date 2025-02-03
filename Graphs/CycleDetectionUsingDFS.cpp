@@ -43,3 +43,42 @@ string cycleDetection (vector<vector<int>>& edges, int n, int m)
     }
     return "No";
 }
+
+
+class Solution {
+  public:
+    // Function to detect cycle in an undirected graph.
+    bool isCycle(vector<vector<int>>& adj){
+        int v = adj.size();
+        vector<bool> visited(v, false);
+        vector<int> parent(adj.size(), -1);
+        for(int i = 0; i < v; i++){
+            if(!visited[i]){
+                if(dfsCycleCheck(i, adj, visited, parent)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+  private:
+    bool dfsCycleCheck(int node, vector<vector<int>>& adj, vector<bool>& visited, vector<int>&parent) {
+        
+        visited[node] = true;
+
+        for(int nbr: adj[node]){
+            if(!visited[nbr]){
+                parent[nbr] = node;
+                bool ans = dfsCycleCheck(nbr, adj, visited, parent);
+                if(ans){
+                    return true;
+                }
+            }
+            else if(visited[nbr] && parent[node]!=nbr){
+                return true;
+            }
+        }
+        return false;
+    }
+};

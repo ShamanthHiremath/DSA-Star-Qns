@@ -1,3 +1,45 @@
+class Solution {
+  public:
+    // Function to detect cycle in an undirected graph.
+    bool isCycle(vector<vector<int>>& adj){
+        int v = adj.size();
+        vector<bool> visited(v, false);
+        for(int i = 0; i < v; i++){
+            if(!visited[i]){
+                if(bfsCycleCheck(i, adj, visited)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+  private:
+    bool bfsCycleCheck(int start, vector<vector<int>>& adj, vector<bool>& visited) {
+        vector<int> parent(adj.size(), -1);
+        queue<int> q;
+        q.push(start);
+        visited[start] = true;
+
+        while(!q.empty()){
+            int node = q.front();
+            q.pop();
+
+            for(int nbr : adj[node]){
+                if(!visited[nbr]){
+                    visited[nbr] = true;
+                    q.push(nbr);
+                    parent[nbr] = node;
+                }
+                else if(parent[node] != nbr){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+};
+
 #include<bits/stdc++.h>
 bool hasCycle(int src, unordered_map<int, bool> &visited , unordered_map<int, list<int> > &adj){
     unordered_map<int, int> childparent;
