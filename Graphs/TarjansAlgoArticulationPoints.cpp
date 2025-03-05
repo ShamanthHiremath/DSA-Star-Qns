@@ -26,7 +26,7 @@ void dfs(int &node, int &parent, int &timer, unordered_map<int, list<int>>&adj, 
         }
         if(!visited[nbr]){
             dfs(nbr,parent, timer, adj, lowtime, disctime, visited, artPts);
-            //check for bacedges
+            //check for back edges
             lowtime[node]=min(lowtime[node], lowtime[nbr]);
             
             //CONDITION Check for ArtPts 
