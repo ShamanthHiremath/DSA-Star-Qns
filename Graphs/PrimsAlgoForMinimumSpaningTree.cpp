@@ -20,6 +20,65 @@ No of nodes=5, Edges= 4
  Minimum Spanning Tree (MST) is a ST with minimum total cost of weights(edge values) \
  PRIMS ALGO
 */
+
+
+class Solution {
+    public:
+      // Function to find sum of weights of edges of the Minimum Spanning Tree.
+      int spanningTree(int V, vector<vector<int>> adj[]) {
+          // code here
+          
+          int n = V;
+          vector<bool>mst(n, false);
+          vector<int>key(n, INT_MAX);
+          
+          priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+          pq.push({0, 0});
+          
+          key[0] = 0;
+          
+          int sum = 0;
+          
+          // vector<tuple<int, int, int>> mstEdges;
+          
+          while(!pq.empty()){
+              // auto topnode = pq.top();
+              int weight = pq.top().first;
+              int u = pq.top().second;
+              pq.pop();
+              
+              if(mst[u]){
+                  continue;
+              }
+              
+              mst[u] = true;
+              sum += weight;
+              
+              // Add edge to MST list (skip for root node as parent[u] is -1)
+              // if (parent[u] != -1) {
+                  // mstEdges.push_back({parent[u], u, weight});
+              // }
+              
+              
+              for(auto neighbour: adj[u]){
+                  int nbr = neighbour[0];
+                  int wt = neighbour[1];
+                  
+                  if(!mst[nbr] && key[nbr] > wt){
+                      key[nbr] = wt;
+                      //  parent[v] = u;
+                      pq.push({wt, nbr});
+                       
+                  }
+              }
+          }
+          
+          return sum;
+          
+      }
+  };
+
+
 #include <bits/stdc++.h> 
 vector<pair<pair<int, int>, int>> calculatePrimsMST(int n, int m, vector<pair<pair<int, int>, int>> &g)
 {
@@ -47,21 +106,21 @@ vector<pair<pair<int, int>, int>> calculatePrimsMST(int n, int m, vector<pair<pa
     //parent[src] is already -1
     for(int i=1; i<=n; i++){
 
-        //Take out the minimum most element index fromthe KEY array
+        //Take out the minimum most element index from the KEY array that hasnt been included in the MST
         int mini=INT_MAX;
         int u;
         for(int j=1; j<=n; j++){
-            //only false nodes are considered
+            //only false nodes are considered, since they're not included in the MST   
             if(mst[j]==false && key[j]<mini){
                 mini=key[j];
                 u=j;
             }
         }
 
-        //Mark mst of u as true
+        //Mark mst of u as true, inlcude it inside the MST
         mst[u]=true;
 
-        //Check for adjacent neighbors
+        //Check for adjacent neighbors, and include the ones that were inside 
         for(auto neighbor: adj[u]){
             int v=neighbor.first;
             int w=neighbor.second;
@@ -69,7 +128,7 @@ vector<pair<pair<int, int>, int>> calculatePrimsMST(int n, int m, vector<pair<pa
                 key[v]=w;
                 parent[v]=u;
             }
-        } 
+        }
     }
     //COMPLETED THE FORMING PARENT PART
 
