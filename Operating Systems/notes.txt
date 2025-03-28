@@ -1,0 +1,23 @@
+What you need?
+
+// a condition variable that is used to block a thread until it is notified
+std::condition_variable cv;
+
+// a mutex that is used to protect the shared resource (the turn variable)
+std::mutex m;
+
+// puts a lock on the mutex and waits for the condition variable to be notified
+std::unique_lock<std::mutex> lock(m);
+
+// a boolean variable that indicates whether the game is over or not
+int turn = 0; // 0 for P1, 1 for P2
+
+
+
+What do the funtions do?
+
+// this function makes the current thread wait for the condition variable to be notified, while getting or freeing the lock on the current mutex
+cv.wait();
+
+// wakes up all threads that are waiting on the condition variable
+cv.notify_all(); 
