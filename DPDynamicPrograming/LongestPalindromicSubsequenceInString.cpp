@@ -51,3 +51,38 @@ public:
         return solveTab(str, revstr);
     }
 };
+
+
+class Solution {
+    public:
+        int solveMemo(int i, int j, string& str, string& revstr, vector<vector<int>>& dp) {
+            // base case: if either string is exhausted
+            if(i >= str.length() || j >= revstr.length()) {
+                return 0;
+            }
+    
+            // memoized value
+            if(dp[i][j] != -1) return dp[i][j];
+    
+            int ans = 0;
+            if(str[i] == revstr[j]) {
+                ans = 1 + solveMemo(i + 1, j + 1, str, revstr, dp);
+            } else {
+                ans = max(
+                    solveMemo(i + 1, j, str, revstr, dp),
+                    solveMemo(i, j + 1, str, revstr, dp)
+                );
+            }
+    
+            return dp[i][j] = ans;
+        }
+    
+        int longestPalindromeSubseq(string str) {
+            string revstr = str;
+            reverse(revstr.begin(), revstr.end());
+            int n = str.length();
+            vector<vector<int>> dp(n, vector<int>(n, -1));
+            return solveMemo(0, 0, str, revstr, dp);
+        }
+    };
+    

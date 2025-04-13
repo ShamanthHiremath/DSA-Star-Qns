@@ -1,7 +1,11 @@
 /*
+Morris Traversal of a Binary Tree: INORDER TRAVERSAL 
+
+https://takeuforward.org/data-structure/morris-inorder-traversal-of-a-binary-tree/
+
 Threaded Binary Tree :
-Basically a node's (say X) left child's rightmost value, i.e the node's maximum most value has INORDER SUCCESSOR as the current node (X)
-And a node's (say X) right child's leftmost value, i.e the node's minimum most value has INORDER PREDECESSOR as the current node (X)
+Basically a node's (say X) left child's rightmost value, i.e the node's maximum most value has INORDER PREDECESSOR as the current node (X)
+And a node's (say X) right child's leftmost value, i.e the node's minimum most value has INORDER SUCCESSOR  as the current node (X)
 
 This helps us to avoid any recursions or use extra space when doing traversals. Bcuz the connection is already established.
 
