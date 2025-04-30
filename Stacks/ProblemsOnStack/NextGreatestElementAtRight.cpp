@@ -18,32 +18,29 @@ Explanation: The next greater element for each value of nums1 is as follows:
 */
 
 class Solution {
-public:
-    vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
-        stack<int>st;
-        vector<int>ans;
-        map<int, int>mp;
-
-        for(int i=nums2.size()-1; i>=0; i--){
-            while(!st.empty() && st.top() <= nums2[i]){
-                st.pop();
-            }
-
-            if(st.empty()){
-                mp[nums2[i]] = -1;
-            }
-            else{
+    public:
+        vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
+            stack<int>st;
+            vector<int>ans;
+            map<int, int>mp;
+    
+            st.push(-1);
+    
+            for(int i=nums2.size()-1; i>=0; i--){
+                while(st.top() != -1 && st.top() <= nums2[i]){
+                    st.pop();
+                }
+    
                 mp[nums2[i]] = st.top();
+    
+                st.push(nums2[i]);
             }
-
-            st.push(nums2[i]);
+    
+    
+            for(int i:nums1){
+                ans.push_back(mp[i]);
+            }
+    
+            return ans;
         }
-
-
-        for(int i:nums1){
-            ans.push_back(mp[i]);
-        }
-
-        return ans;
-    }
-};
+    };
