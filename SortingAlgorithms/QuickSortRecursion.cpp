@@ -4,7 +4,7 @@
 using namespace std;
 
 int partition(int* arr, int s, int e){
-    //count the no of elements greater than the element in position s
+    //count the no of elements smaller than the element in position s
     int count=0;
     for(int i=s+1; i<=e; i++){
         if(arr[i]<=arr[s]){
@@ -18,12 +18,16 @@ int partition(int* arr, int s, int e){
     //check if the elements at the left and right side of count are lesser and greater than the countTH element rply
     int i=s, j=e;
     while(i < pivotIndex && j > pivotIndex){
+        //if the element is smaller than the pivot element, then move to the next element
         while(arr[i] < arr[pivotIndex]){
             i++;
         }
+        // if the element is greater than the pivot element, then move to the previous element
         while(arr[j] > arr[pivotIndex]){
             j--;
         }
+        //if the right element is smaller than the pivot element and the left element is greater than the pivot element, then swap them
+        //and move to the next element
         if(i < pivotIndex && j > pivotIndex){
             swap(arr[i], arr[j]);
             i++;
