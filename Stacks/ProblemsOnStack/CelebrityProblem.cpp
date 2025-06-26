@@ -79,3 +79,53 @@ class Solution
         
     }
 };
+
+
+// OR EASY ONE O(1) SPACE
+
+class Solution {
+  public:
+    int celebrity(vector<vector<int> >& mat) {
+        // code here
+        int n = mat.size();
+        int top = 0;
+        int down = n-1;
+        
+        
+        // A celebrity is a person who is known to all (all other's connection to this person should be 1)
+        // but does not know anyone at a party (his entire row should be zero)
+        
+        while(top < down){
+            // if the top pointerptr person knows down, he cannot be a CELEB
+            if(mat[top][down]){
+                top++;
+            }
+            // if the down pointerptr person knows top, he cannot be a CELEB
+            else if(mat[down][top]){
+                down--;
+            }
+            // if both dont know each other, maybe tehy're not friends, but they're not CELEBs either
+            // because a CELEB is known by everyone!!
+            else{
+                top++;
+                down--;
+            }
+        }
+        
+        // no one is a CELEB
+        if(top>down){
+            return -1;
+        }
+        
+        // CELEB's row is zero
+        for(int i=0; i<n; i++){
+            if (i == top) continue;
+            // if he knows anyone OR someone doesnt know him 
+            if(mat[top][i] or !mat[i][top]){
+                return -1;
+            }
+        }
+        
+        return top;
+    }
+};
