@@ -48,7 +48,7 @@ public:
             if(mp[s[r]] > 0){
                 cnt++;
             }
-            // reduce from map since counted
+            // reduce from map since counted, and the ones which do not belong in t become -ve
             mp[s[r]]--;
 
             // valid substring, but shrink to find mini
@@ -59,6 +59,7 @@ public:
                 }
                 // re add thos eused chars in map substring
                 mp[s[l]]++;
+                // here the count doesnt reducew when the char not in t is incremented
                 if(mp[s[l]] > 0){
                     cnt--;
                 }
