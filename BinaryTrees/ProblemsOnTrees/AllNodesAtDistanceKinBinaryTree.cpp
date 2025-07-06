@@ -27,6 +27,113 @@ Output: []
  * };
  */
 
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* preorder(TreeNode* root, int target){
+        if(!root){
+            return NULL;
+        }
+        if(root->val == target){
+            return root;
+        }
+        TreeNode* leftResult = preorder(root->left, target);
+        if(leftResult){
+            return leftResult;
+        }
+        return preorder(root->right, target);
+
+    }
+
+    void dfs(TreeNode* root, int dist, int k, unordered_map<TreeNode*, bool>&vis, unordered_map<TreeNode*, TreeNode*>&parent, vector<int>&ans){
+        if(!root){
+            return;
+        }
+        if(vis[root]){
+            return;
+        }
+
+        vis[root] = true;
+        if(dist == k){
+            ans.push_back(root->val);
+            return;
+        }
+
+        // dfs
+        // parent traverse
+        if(!vis[parent[root]]){
+            dfs(parent[root], dist+1, k, vis, parent, ans);
+        }
+
+        // left
+        if(!vis[root->left]){
+            dfs(root->left, dist+1, k, vis, parent, ans);
+        }
+        // right
+        if(!vis[root->right]){
+            dfs(root->right, dist+1, k, vis, parent, ans);
+        }
+
+    }
+
+
+
+    vector<int> distanceK(TreeNode* root, TreeNode* target, int k) {
+        // make a visited set for TreeNode*
+        // traverse level order and maintain a parentNode map
+        // parentNode map will map the parent of a node
+
+        // find the node using Preorder, postorder, inorder traversal
+        // start DFS readially, to the parentNode, as well as left, right
+        // visit unvisited nodes only
+        // increment distance untill k and store all nodes when dis = k
+
+        unordered_map<TreeNode*, bool>vis;
+        unordered_map<TreeNode*, TreeNode*>parent;
+
+        queue<TreeNode*> q;
+        q.push(root);
+        while(!q.empty()){
+            int levelSize = q.size();
+            // process that level
+            for(int i=0; i<levelSize; i++){
+                auto node = q.front();
+                q.pop();      
+
+                if(node->left){
+                    q.push(node->left);
+                    parent[node->left] = node;
+                }
+                if(node->right){
+                    q.push(node->right);
+                    parent[node->right] = node;
+                }
+            }
+        }
+
+        // preorder to find node
+        // TreeNode* target = preorder(root, target);
+    
+
+
+        // dfs
+        vector<int>ans;
+        dfs(target, 0, k, vis, parent, ans);
+        
+        return ans;
+    }
+};
+
+
  class Solution {
     public:
     // find the k bottom nodes from the right subtree
